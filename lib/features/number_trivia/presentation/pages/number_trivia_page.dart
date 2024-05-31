@@ -19,6 +19,7 @@ class NumberTriviaPage extends StatelessWidget {
   }
 
   BlocProvider<NumberTriviaBloc> buildBody(BuildContext context) {
+    //with Futures
     return BlocProvider(
       create: (_) => sl<NumberTriviaBloc>(),
       child: Center(

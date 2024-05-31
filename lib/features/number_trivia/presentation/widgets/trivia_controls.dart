@@ -50,6 +50,13 @@ class _TriviaControlsState extends State<TriviaControls> {
                 onPressed: dispatchRandom,
               ),
             ),
+             SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                child: Text('Get random values a time'),
+                onPressed: dispatchRandom,
+              ),
+            ),
           ],
         )
       ],
