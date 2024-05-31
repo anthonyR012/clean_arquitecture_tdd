@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 abstract class NumberTriviaEvent extends Equatable {
@@ -17,3 +17,8 @@ class GetTriviaForConcreteNumber extends NumberTriviaEvent {
 }
 
 class GetTriviaForRandomNumber extends NumberTriviaEvent {}
+
+
+class GetAutomaticTrivia extends NumberTriviaEvent {
+
+}

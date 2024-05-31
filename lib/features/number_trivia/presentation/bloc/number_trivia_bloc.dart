@@ -1,3 +1,4 @@
+import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdd_test/core/error/failures.dart';
@@ -17,7 +18,6 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final GetConcreteNumberTrivia getConcreteNumberTrivia;
   final GetRandomNumberTrivia getRandomNumberTrivia;
   final InputConverter inputConverter;
-
   NumberTriviaBloc({
     required this.getConcreteNumberTrivia,
     required this.getRandomNumberTrivia,
@@ -25,6 +25,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   }) : super(Empty()) {
     on<GetTriviaForRandomNumber>(_getTriviaForRandomNumber);
     on<GetTriviaForConcreteNumber>(_getTriviaForConcreteNumber);
+    on<GetAutomaticTrivia>(_getAutomaticTrivia);
   }
 
   _getTriviaForRandomNumber(
@@ -59,6 +60,14 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
     }
   }
 
+  _getAutomaticTrivia(
+      GetAutomaticTrivia event, Emitter<NumberTriviaState> emit) async {
+    while(true){
+      await Future.delayed(const Duration(seconds: 5));
+      add(GetTriviaForRandomNumber());
+    }
+  }
+
 
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
@@ -70,4 +79,5 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
         return 'Unexpected error';
     }
   }
+
 }
